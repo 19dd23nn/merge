@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "974981678575",
+    "project_id": "merge-276fd",
+    "storage_bucket": "merge-276fd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974981678575:android:5a94a23809398ddb70221a",
+        "android_client_info": {
+          "package_name": "com.example.merge"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTmsi3YRJw00Sr1jg1Ww55XanYkMcbbBI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

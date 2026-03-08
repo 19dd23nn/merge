@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "active": true,
+  "skill": "team",
+  "keyword": "$team",
+  "phase": "planning",
+  "activated_at": "2026-03-08T14:29:01.240Z",
+  "updated_at": "2026-03-08T14:29:01.240Z",
+  "source": "keyword-detector",
+  "session_id": "",
+  "thread_id": "019ccdb9-0043-7712-9911-ce6caeaff7f2",
+  "turn_id": "019ccdd9-1dc5-7bd3-8e4e-dfe5ec01d09b"
+}
