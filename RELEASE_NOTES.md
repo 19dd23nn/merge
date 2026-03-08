@@ -23,10 +23,18 @@ Release date: 2026-03-08
 ### Verification Summary
 
 - `git diff --check`
-- `flutter analyze`
+- `flutter analyze --no-fatal-infos`
 - `flutter build web --release --base-href /merge/`
+
+### Publishing Workflow
+
+1. Update `pubspec.yaml`
+2. Run validation commands
+3. Commit and push `main`
+4. Create and push the release tag
+5. Publish the GitHub release body from this file
 
 ### Notes
 
 - The web build path assumes the repository is published at `/merge/`
-- GitHub release creation depends on repository credentials being available in the environment
+- GitHub Pages deployment and GitHub release publishing are separate operations

@@ -50,7 +50,7 @@ class _EnergyWidgetState extends State<EnergyWidget> {
         children: [
           Row(
             children: [
-              const Expanded(child: SizedBox(), flex: 1),
+              const Expanded(flex: 1, child: SizedBox()),
               Expanded(
                 flex: 7,
                 child: Container(

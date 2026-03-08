@@ -160,6 +160,7 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                   ),
                   Expanded(
+                    flex: 2,
                     child: Column(
                       children: [
                         Expanded(flex: 2, child: Container()),
@@ -182,9 +183,6 @@ class _MainScreenState extends State<MainScreen> {
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold,
                                       ),
-                                    ),
-                                    child: Text(
-                                      _isAtMaxLevel ? 'Coming soon' : 'Tasks',
                                     ),
                                     onPressed: _isAtMaxLevel
                                         ? null
@@ -362,6 +360,9 @@ class _MainScreenState extends State<MainScreen> {
                                               },
                                             );
                                           },
+                                          child: Text(
+                                            _isAtMaxLevel ? 'Coming soon' : 'Tasks',
+                                          ),
                                   ),
                                 ),
                               ),
@@ -403,7 +404,6 @@ class _MainScreenState extends State<MainScreen> {
                         Expanded(flex: 2, child: Container()),
                       ],
                     ),
-                    flex: 2,
                   ),
                 ],
               ),

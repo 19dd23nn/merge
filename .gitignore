@@ -47,5 +47,11 @@ android/app/release
 # Web related
 lib/generated_plugin_registrant.dart
 
+# Local agent/tooling artifacts
+.agent-skills/
+.codex/
+.omc/
+.omx/
+
 # Exceptions to above rules.
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages

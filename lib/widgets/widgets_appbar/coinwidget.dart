@@ -41,7 +41,7 @@ class _CoinWidgetState extends State<CoinWidget> {
         children: [
           Row(
             children: [
-              const Expanded(child: SizedBox(), flex: 1),
+              const Expanded(flex: 1, child: SizedBox()),
               Expanded(
                 flex: 7,
                 child: Container(
@@ -87,5 +87,3 @@ class _CoinWidgetState extends State<CoinWidget> {
     );
   }
 }
-
- 
