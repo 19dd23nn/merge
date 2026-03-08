@@ -50,7 +50,7 @@ jobs:
           fi
 
       - name: Build web app
-        run: flutter build web --release --web-renderer canvaskit --base-href "${{ steps.base-href.outputs.value }}"
+        run: flutter build web --release --base-href "${{ steps.base-href.outputs.value }}"
 
       - name: Disable Jekyll processing
         run: touch build/web/.nojekyll

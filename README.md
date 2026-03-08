@@ -1,97 +1,113 @@
 # Merge Game
 
-`merge` is a Flutter-based merge board prototype with pet collection, task progression, a shop screen, and simple resource systems for coins and energy.
+[![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?logo=flutter&logoColor=white)](https://flutter.dev/)
+[![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS%20%7C%20Web-0A7EA4)](./web/)
+[![Release](https://img.shields.io/badge/Release-v1.0.1-111827)](./RELEASE_NOTES.md)
 
-## Features
+> A Flutter merge-board prototype that mixes pet collection, task progression, resource loops, and GitHub Pages delivery.
 
-- 9x7 merge board with draggable items and level-based merge rules
-- Pack cooldown and board state persistence
-- Task rotation with coin rewards
-- Pet collection screen with lock/progress states
-- Shop mock UI with categorized items
-- Splash screen and tab-based navigation
-- Android, iOS, and Flutter Web support
+## Release Highlights
 
-## Tech Stack
+- Release-focused README refresh with a GitHub-safe visual overview
+- GitHub Pages deployment workflow for Flutter Web
+- Web metadata updated for a product-facing presentation
+- Release notes prepared for GitHub release publishing
 
-- Flutter 3 / Dart 3
-- `provider`
-- `spine_flutter`
-- Firebase config files for Android and Web
+## Visual Overview
 
-## Project Structure
-
-```text
-lib/
-  main.dart                     # App entry and main merge gameplay screen
-  main_container.dart           # Bottom navigation container
-  widgets/merge_game_board.dart # Core board interaction logic
-  data/                         # Task models and repository
-  services/                     # Coin, energy, and board state services
-  screens/                      # Pets, shop, inbox, settings
-web/                            # Flutter web shell
-assets/                         # Game images, packs, pets, and UI assets
+```mermaid
+flowchart LR
+    Splash[Splash Screen] --> Shell[Main Container]
+    Shell --> Pets[Pets Collection]
+    Shell --> Home[Merge Board]
+    Shell --> Settings[Settings]
+    Home --> Packs[Feed / Water Packs]
+    Packs --> Merge[Merge Items]
+    Merge --> Tasks[Task Rotation]
+    Tasks --> Coins[Coin Rewards]
+    Coins --> Packs
 ```
 
-## Local Development
+## What Ships In This Build
+
+| Area | Included |
+| --- | --- |
+| Core loop | 9x7 merge board with level-based merge rules |
+| Progression | Task rotation, rewards, pack cooldowns, resource loop |
+| Screens | Splash, pets, home, settings placeholder, shop |
+| Platforms | Android, iOS, Flutter Web |
+| Delivery | GitHub Pages workflow + release notes |
+
+## Quick Start
 
 ### Requirements
 
 - Flutter SDK with Web support enabled
-- Dart SDK matching the Flutter version used by the project
+- Dart SDK compatible with the Flutter toolchain
 
-### Install dependencies
+### Install
 
 ```bash
 flutter pub get
 ```
 
-### Run on a connected device
+### Run locally
 
 ```bash
 flutter run
 ```
 
-### Run in Chrome
+### Run on Chrome
 
 ```bash
 flutter config --enable-web
 flutter run -d chrome
 ```
 
-### Build for the web
+### Build for GitHub Pages
 
 ```bash
-flutter build web --release --web-renderer canvaskit --base-href /merge/
+flutter build web --release --base-href /merge/
 ```
 
-Use `/merge/` for this repository's GitHub Pages deployment path. If you deploy the app from a user or organization site such as `username.github.io`, use `/` instead.
+Use `/merge/` for this repository's current GitHub Pages path. If the repository is published as `username.github.io`, switch the base href to `/`.
 
-## GitHub Pages Deployment
+## Repository Layout
 
-This repository includes a GitHub Actions workflow at [`.github/workflows/deploy-github-pages.yml`](./.github/workflows/deploy-github-pages.yml) that:
+```text
+lib/
+  main.dart                     # App entry and main merge gameplay screen
+  main_container.dart           # Navigation shell
+  widgets/merge_game_board.dart # Board interaction logic
+  data/                         # Task data and repository
+  services/                     # Coin, energy, board state
+  screens/                      # Pets, shop, inbox, settings
+web/                            # Flutter web shell and manifest
+assets/                         # Game images, packs, pets, UI assets
+```
 
-1. Checks out the repository
-2. Installs Flutter
-3. Builds the web app with the correct `--base-href`
-4. Uploads `build/web`
-5. Deploys the artifact to GitHub Pages
+## Deployment
 
-### One-time GitHub setup
+The GitHub Pages workflow is defined in [`.github/workflows/deploy-github-pages.yml`](./.github/workflows/deploy-github-pages.yml).
 
-1. Open the repository on GitHub.
-2. Go to `Settings > Pages`.
-3. Set the source to `GitHub Actions`.
-4. Push to `main` or run the workflow manually.
+1. Push to `main` or run the workflow manually.
+2. GitHub Actions builds Flutter Web with a repo-aware `base-href`.
+3. `build/web` is uploaded and deployed to GitHub Pages.
 
-The workflow automatically uses `/` for `*.github.io` repositories and `/<repo-name>/` for project pages like this repository.
+One-time GitHub setup:
+
+1. Open `Settings > Pages`
+2. Set the source to `GitHub Actions`
+
+## Release Notes
+
+The release summary for this iteration lives in [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ## Notes
 
-- The app currently contains placeholder content in some screens and mock purchase handling in the shop UI.
-- Firebase configuration is present in [`firebase.json`](./firebase.json), but the current app entry does not initialize Firebase.
-- `spine_flutter` is initialized at app startup, so the GitHub Pages workflow builds the web bundle with `--web-renderer canvaskit`.
-- This environment could not run `flutter` commands because the local Flutter SDK attempted to write outside the workspace sandbox.
+- `spine_flutter` is initialized at app startup, so the web release should always be validated against the current Flutter toolchain before publishing.
+- Firebase configuration files exist, but the current app entry does not initialize Firebase.
+- Some screens still contain placeholder or mock behavior, especially settings and purchase handling.
 
 ## Key Files
 
@@ -100,52 +116,4 @@ The workflow automatically uses `/` for `*.github.io` repositories and `/<repo-n
 - [`lib/widgets/merge_game_board.dart`](./lib/widgets/merge_game_board.dart)
 - [`lib/data/board_task_repository.dart`](./lib/data/board_task_repository.dart)
 - [`web/index.html`](./web/index.html)
-
-## JEO Orchestration Workflow
-
-Keyword: `jeo` | Tool: Gemini CLI
-
-JEO provides integrated AI agent orchestration across all AI tools.
-
-### Workflow Phases
-
-#### 1. PLAN (plannotator)
-- Write `plan.md` (Goals, Steps, Risks, Completion Criteria).
-- Run the PLAN gate loop (blocks until approved):
-  ```bash
-  bash .agent-skills/jeo/scripts/plannotator-plan-loop.sh plan.md /tmp/plannotator_feedback.txt 3
-  ```
-- Review `/tmp/plannotator_feedback.txt`. Proceed to EXECUTE only if `"approved":true`.
-
-#### 2. EXECUTE (BMAD for Gemini)
-- Initialize workflow: `/workflow-init`
-- Check status: `/workflow-status`
-- Phases: Analysis → Planning → Solutioning → Implementation
-
-#### 3. VERIFY (agent-browser)
-- UI/Functionality check:
-  ```bash
-  agent-browser snapshot http://localhost:3000
-  ```
-
-#### 4. CLEANUP (worktree)
-- Post-work cleanup:
-  ```bash
-  bash /Users/hans/Desktop/.agents/skills/jeo/scripts/worktree-cleanup.sh
-  ```
-
-#### 5. ANNOTATE (agentation)
-When requested to process UI annotations:
-- Check pending: `GET http://localhost:4747/pending`
-- Resolve annotations sequentially until count is 0.
-
----
-
-## ohmg Integration
-
-For Gemini multi-agent orchestration:
-
-```bash
-bunx oh-my-ag           # Initialize ohmg
-/coordinate "<task>"    # Coordinate multi-agent task
-```
+- [`RELEASE_NOTES.md`](./RELEASE_NOTES.md)
